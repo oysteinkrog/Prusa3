@@ -52,19 +52,28 @@ module zrodholder(thickness=(i_am_box == 0 ? 19 : 15), bottom_thickness=7, ylen=
             difference(){
                 union(){
                     //piece along the flat side of a board
-                   	cube_fillet([xwidth, ylen, bottom_thickness], vertical=[8, 3, 0, 0]);
-                   	cube_fillet([5, ylen, thickness+bottom_thickness-4], vertical=[3, 3, 0, 0], top = [thickness / 1.7, 0, 0, 5]);
+								if(bearing_holder) {						
+                      	cube_fillet([xlen, ylen, bottom_thickness], vertical=[8, 3, 0, 0]);
+                    	cube_fillet([5, ylen, thickness+bottom_thickness-4], vertical=[3, 3, 0, 0], top = [thickness / 1.7, 0, 0, 5]);
+								} else {
+                   		cube_fillet([xwidth, ylen, bottom_thickness], vertical=[8, 3, 0, 0]);
+                   		cube_fillet([5, ylen, thickness+bottom_thickness-4], vertical=[3, 3, 0, 0], top = [thickness / 1.7, 0, 0, 5]);
+								}
+
 
                     //hole for Z axis is thru this
                     translate([0, -z_offset, 0])
 									cube_fillet([xlen, ywidth, bottom_thickness], vertical=[3, 0, 0, 3]);
                     translate([xwidth, ywidth-z_offset, 0]) {
-                        	//large fillet that makes it stiffer by lot. Thanks to Marcus Wolschon
-                        	difference(){
-                         	cube([holder_inner_r, holder_inner_r, bottom_thickness]);
-                         	translate([holder_inner_r, holder_inner_r, -0.5])
-                             cylinder(r=holder_inner_r, h=bottom_thickness + 1);
-                        	}										
+										if(!bearing_holder)
+										{
+                        		//large fillet that makes it stiffer by lot. Thanks to Marcus Wolschon
+                        		difference(){
+                         	   cube([holder_inner_r, holder_inner_r, bottom_thickness]);
+                         	   translate([holder_inner_r, holder_inner_r, -0.5])
+                         	       cylinder(r=holder_inner_r, h=bottom_thickness + 1);
+                        		}
+										}
                     }
                     translate([5, 5, 0]) {
                         difference(){
@@ -128,5 +137,5 @@ module zrodholder(thickness=(i_am_box == 0 ? 19 : 15), bottom_thickness=7, ylen=
 }
 translate([00, -50, 0]) zmotorholder();
 translate([0, 50, 0]) mirror([0, 1, 0]) zmotorholder();
-translate([67, 50, 0]) rotate([0,0,0]) mirror([0, 1, 0]) zrodholder(bottom_thickness=10);
-translate([67, -50, 0]) rotate([0, 0, -0]) zrodholder(bottom_thickness=10);
+translate([67, 50, 0]) rotate([0,0,0]) mirror([0, 1, 0]) zrodholder(bearing_holder=true, bottom_thickness=10);
+translate([67, -50, 0]) rotate([0, 0, -0]) zrodholder(bearing_holder=true, bottom_thickness=10);
