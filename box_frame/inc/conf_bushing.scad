@@ -21,6 +21,9 @@ conf_b_bushing12 = [6, 7.1, 15, 1, "Tube shaped bushing with id=12mm, od=14mm an
 
 conf_b_bronze8 = [4, 8, 11, 1, "bronze self-aligning bushing, 8mm"];
 
+//bronze bushings
+conf_b_bronze8_30 = [4, 6.2, 30, 0, "bronze bushing (8mm inner, 30mm length, 12mm outer)"];
+
 //shorter bearings (two on each Z axis)
 conf_b_lm8uu = [4, 7.7, 24, 0, "lm8uu bearing (standard)"];
 conf_b_lm10uu = [5, 9.7, 29, 0, "lm10uu bearing (10mm smooth rod)"];
