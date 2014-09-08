@@ -98,11 +98,11 @@ module zrodholder(thickness=(i_am_box == 0 ? 19 : 15), bottom_thickness=7, ylen=
                 if(bearing_holder)
                 {		
                     // for bearing
-                    translate([board_to_xz_distance - z_delta, board_to_xz_distance, -1])
-                        cylinder(h=8, r=(22/2)+0.2);
+                    translate([board_to_xz_distance - z_delta, board_to_xz_distance, -0.1])
+                        cylinder(h=8+0.1, r=(22/2)+0.2);
 								// for lead screw
                     translate([board_to_xz_distance - z_delta, board_to_xz_distance, -1])
-                        cylinder(h=20, r=4+0.1);
+                        cylinder(h=50, r=4+0.1, center=true);
                 }
 
                 //smooth rod hole
