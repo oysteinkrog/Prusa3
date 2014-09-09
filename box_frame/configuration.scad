@@ -62,8 +62,8 @@ belt_thickness = 0.8;
 // Choose bearing/bushing configuration ***************************************
 // conf_b_* are in inc/conf_bushing.scad
 
-bushing_xy = conf_b_lm8uu;
-bushing_z = conf_b_lm8uu;
+bushing_xy = conf_b_bronze8_30;
+bushing_z = conf_b_bronze8_30;
 // for longer bearings use one shorter in x-carriage to make place for belt attachment
 // by default use same as xy
 bushing_carriage = bushing_xy;
