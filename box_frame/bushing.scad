@@ -111,10 +111,10 @@ module linear_bearing(conf_b=bushing_xy, h=0){
                 union() {
                     // upper clamp for long holders
                     if (h > 2*conf_b[2] + 9*layer_height || conf_b[2] > 45){
-                        translate ([0,0, max(h, conf_b[2]) - 8 ]) bearing_clamp(conf_b, 2*(bushing_outer_radius(conf_b)));
+                        translate ([0,0, max(h, conf_b[2]) - conf_b[2]/2 ]) bearing_clamp(conf_b, 2*(bushing_outer_radius(conf_b)));
                     }
                     //lower clamp
-                    translate ([0, 0, 10]) bearing_clamp(conf_b, 2*(bushing_outer_radius(conf_b)));
+                    translate ([0, 0, conf_b[2]/2]) bearing_clamp(conf_b, 2*(bushing_outer_radius(conf_b)));
                 }
             }
         }
