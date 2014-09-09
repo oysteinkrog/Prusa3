@@ -66,7 +66,7 @@ module idlermount(len=45, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
     difference(){
         union(){
             //wide part holding bearing
-            translate([- (10 + idler_width) / 2, -25 + narrow_len, 0] ) cube_fillet([10 + idler_width, len + idler_bearing[2] * 1.1 - narrow_len, idler_height]);
+            translate([- (8 + idler_width) / 2, -25 + narrow_len, 0] ) cube_fillet([8 + idler_width, len + idler_bearing[2] * 1.1 - narrow_len, idler_height]);
             //For X there is narrow part inside the x-idler
             if (narrow_len > 0){
                 translate([-narrow_width / 2, -25, 0] ) cube_fillet([narrow_width, len + idler_bearing[2], idler_height], vertical=[0, 0, 2, 2]);
