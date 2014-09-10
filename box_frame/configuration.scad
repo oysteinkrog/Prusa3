@@ -91,7 +91,7 @@ carriage_l_base = 50;
 // 2 = chamfer (cut the edges at 45deg. angle)
 // Please do put only parts with fillets on sale, other options are not really tested
 
-use_fillets = 1;
+use_fillets = 0;
 
 // set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
 i_am_box = 0;
@@ -109,6 +109,14 @@ i_want_to_use_single_plate_dxf_and_make_my_z_weaker = 1;
 //Use 5.4 for M10 or 4.4 for M8
 y_threaded_rod_long_r = 4.4;
 
+
+// Vertical axis rod type
+//z_type = "threadedrod"; 
+z_type = "leadscrew_rb_8x8_ab"; // robotdigg leadscrew Tr8x8 w/anti-backlash nut
+
+// Radius of vertical threaded rod/lead screw
+//z_threaded_rod_r = 2.7; 
+z_threaded_rod_r = 4.2; // for robotdigg Tr8x8 leadscrew
 
 // Thickness of the boards that make the box frame.
 

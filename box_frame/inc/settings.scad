@@ -10,7 +10,7 @@ idler_width = max(belt_width, (idler_bearing[1] > 7 ? idler_bearing[1] : 7)) + 2
 
 //deltas are used to enlarge parts for bigger bearings
 xy_delta = ((bushing_xy[1] <= 7.7) ? 0 : bushing_xy[1] - 7.7) * 0.9;
-z_delta = (bushing_z[1] <= 7.7) ? 0 : bushing_z[1] - 7.7;
-z_offset = 5;
+z_delta_x = (bushing_z[1] <= 7.7) ? 0 : bushing_z[1] - 7.7 ;
+z_delta_y = 0;//-6;
 
 m3_nut_diameter_bigger = ((m3_nut_diameter / 2) / cos (180 / 6)) * 2;

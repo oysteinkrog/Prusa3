@@ -45,7 +45,7 @@ module zrodholder(thickness=(i_am_box == 0 ? 19 : 15), bottom_thickness=7, ylen=
     holder_inner_r = 9;
     holder_inner_r2 = 2;
     xwidth = 14;
-    ywidth = 14+z_offset;
+    ywidth = 14+abs(z_delta_y);
 	  
     difference(){
         union(){
@@ -62,9 +62,9 @@ module zrodholder(thickness=(i_am_box == 0 ? 19 : 15), bottom_thickness=7, ylen=
 
 
                     //hole for Z axis is thru this
-                    translate([0, -z_offset, 0])
+                    translate([0, z_delta_y, 0])
 									cube_fillet([xlen, ywidth, bottom_thickness], vertical=[3, 0, 0, 3]);
-                    translate([xwidth, ywidth-z_offset, 0]) {
+                    translate([xwidth, ywidth+z_delta_y, 0]) {
 										if(!bearing_holder)
 										{
                         		//large fillet that makes it stiffer by lot. Thanks to Marcus Wolschon
@@ -84,29 +84,29 @@ module zrodholder(thickness=(i_am_box == 0 ? 19 : 15), bottom_thickness=7, ylen=
                     }
                     //piece along cut side of the board
                     if (i_am_box == 1) {
-                        translate([-board_thickness/2, -z_offset, 0])
-                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], z_offset+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
+                        translate([-board_thickness/2, z_delta_y, 0])
+                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], z_delta_y+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
                     } else {
-                        translate([-board_thickness/2, -z_offset, 0])
-                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], z_offset+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
+                        translate([-board_thickness/2, z_delta_y, 0])
+                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], z_delta_y+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
                     }
                     //smooth rod insert
-                    translate([board_to_xz_distance - z_delta, 9-z_offset, 0])
+                    translate([board_to_xz_distance - z_delta_x, 9+z_delta_y, 0])
                         cylinder(h=bottom_thickness / 2, r=(bushing_z[0] + 5 * single_wall_width));
                 }
 
                 if(bearing_holder)
                 {		
                     // for bearing
-                    translate([board_to_xz_distance - z_delta, board_to_xz_distance, -0.1])
+                    translate([board_to_xz_distance - z_delta_x, board_to_xz_distance, -0.1])
                         cylinder(h=8+0.1, r=(22/2)+0.2);
 								// for lead screw
-                    translate([board_to_xz_distance - z_delta, board_to_xz_distance, -1])
+                    translate([board_to_xz_distance - z_delta_x, board_to_xz_distance, -1])
                         cylinder(h=50, r=4+0.1, center=true);
                 }
 
                 //smooth rod hole
-                translate([board_to_xz_distance - z_delta, 9-z_offset, -1]) cylinder(h=board_thickness+20, r=bushing_z[0] + single_wall_width / 4);
+                translate([board_to_xz_distance - z_delta_x, 9+z_delta_y, -1]) cylinder(h=board_thickness+20, r=bushing_z[0] + single_wall_width / 4);
                 //inside rouned corner
                 //translate([0, 5, -1]) cylinder(r=0.8, h=100, $fn=8);
                 //side screw
