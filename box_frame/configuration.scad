@@ -91,7 +91,7 @@ carriage_l_base = 50;
 // 2 = chamfer (cut the edges at 45deg. angle)
 // Please do put only parts with fillets on sale, other options are not really tested
 
-use_fillets = 0;
+use_fillets = 1;
 
 // set to 0 for single plate (affects z axis and screws that attach RP parts to frame)
 i_am_box = 0;
