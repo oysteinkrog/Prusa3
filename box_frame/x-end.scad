@@ -119,7 +119,7 @@ module x_end_base(vfillet=[2, 2, 2, 2], thru=true, len=40, offset=0){
     translate([0, 17, 0]) %cylinder(h = 70, r=z_threaded_rod_r);
 }
 
-module x_end_idler(len=50){
+module x_end_idler(len=52){
     difference() {
         x_end_base(len=len + abs(z_delta_y), offset=-5+z_delta_y);
 
