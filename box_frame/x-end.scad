@@ -105,12 +105,12 @@ module x_end_base(vfillet=[2, 2, 2, 2], thru=true, len=40, offset=0){
                 }
         }     
         //smooth rods
-        translate([-10 - bushing_xy[0], offset-z_delta_y, x_box_height/2]) {
+        translate([-10 - bushing_xy[0], offset-z_delta_y, x_box_height/2-2]) {
             if(thru == true){
-                translate([0, -11+z_delta_y, -xaxis_rod_distance/2]) rotate([-90, 180, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, len);
+                translate([0, -11+z_delta_y, -xaxis_rod_distance/2]) rotate([-90, 0, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, len);
                 translate([0, -11+z_delta_y, xaxis_rod_distance/2]) rotate([-90, 0, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, len);
             } else {
-                translate([0, +z_delta_y, -xaxis_rod_distance/2]) rotate([-90, 180, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, len);
+                translate([0, +z_delta_y, -xaxis_rod_distance/2]) rotate([-90, 0, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, len);
                 translate([0, +z_delta_y, +xaxis_rod_distance/2]) rotate([-90, 0, 0]) pushfit_rod(bushing_xy[0] * 2 + 0.2, len);
             }
         }
