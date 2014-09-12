@@ -311,7 +311,7 @@ screw(25);
 module z_rods()
 {
 	color("MediumBlue")
-	translate([board_w/2-4-12+board_thickness,-26+12-board_thickness,42])cylinder(h=z_smooth_rod_length,r=bushing_z[0]);
+	translate([board_w/2-4-12+board_thickness-z_delta_y,-26+12-board_thickness,42])cylinder(h=z_smooth_rod_length,r=bushing_z[0]);
     echo (z_smooth_rod_length);
 	color("Aqua")
 	translate([board_w/2-4-12+board_thickness-17,-26+12-board_thickness,56])cylinder(h = 390, r=2.5);
