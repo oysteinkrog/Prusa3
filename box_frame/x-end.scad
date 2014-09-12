@@ -125,7 +125,7 @@ module x_end_idler(len=52){
 
         translate([-6 - x_box_width, 10, -0.25 + x_box_height/2 - (max(idler_width, 16) / 2)]) cube([x_box_width + 1, 23, 0.5 + max(idler_bearing[0], 16)]);
     }
-        %translate([-14 - xy_delta / 2, -9, x_box_height/2 - (max(idler_width, 16) / 2)]) x_tensioner();
+        %translate([-14 - xy_delta / 2, -7, x_box_height/2 - (max(idler_width, 16) / 2)]) x_tensioner();
 }
 
 module x_tensioner(len=62, idler_height=max(idler_bearing[0], 16)) {
