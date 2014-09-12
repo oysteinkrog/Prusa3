@@ -70,16 +70,16 @@ module idlermount(len=45, narrow_len=0, narrow_width=0, rod=threaded_rod_diamete
             //For X there is narrow part inside the x-idler
             if (narrow_len > 0){
                 translate([-narrow_width / 2, -25, 0] ) cube_fillet([narrow_width, len + idler_bearing[2], idler_height], vertical=[0, 0, 2, 2]);
-                mirror([1, 0, 0]) translate([-narrow_width / 2, narrow_len -25, idler_height / 2 ]) fillet(1.5, idler_height - 0.04, $fn=8);
-                translate([-narrow_width / 2, narrow_len -25, idler_height / 2]) fillet(1.5, idler_height - 0.04, $fn=8);
+                //mirror([1, 0, 0]) translate([-narrow_width / 2, narrow_len -25, idler_height / 2 ]) fillet(1.5, idler_height - 0.04, $fn=8);
+                //translate([-narrow_width / 2, narrow_len -25, idler_height / 2]) fillet(1.5, idler_height - 0.04, $fn=8);
             }
         }
         translate([-12, -8, idler_height / 2]) rotate([90, 0, 90]) oval(r=rod + 0.01, l=12, h=25);
-        translate([0, -13 - single_wall_width*2, idler_height / 2]) {
+        translate([0, -11 - single_wall_width*2, idler_height / 2]) {
             // nut for tensioning screw
             translate([0,0,0]) rotate([90, 0, 0]) cylinder(r=m4_nut_diameter_horizontal / 2, h=3.8, $fn=6);
             // nut insert
-            translate([-2, -3.8, -m4_diameter * 1.5 / 2]) cube([20, 3.8, m4_diameter * 1.5+0.3]);
+            //translate([-2, -3.8, -m4_diameter * 1.5 / 2]) cube([20, 3.8, m4_diameter * 1.5+0.3]);
         }
 
         // tensioning screw goes here
