@@ -27,7 +27,7 @@ use <y-drivetrain.scad>
 //height and width of the x blocks depend on x smooth rod radius
 bushing_spacing = 4;
 x_box_height = max(xaxis_rod_distance+bushing_xy[0]*4, bushing_spacing + 2 * bushing_xy[2]);
-x_box_width = (bushing_xy[0] <= 4) ? 17.5 : bushing_xy[0] * 2 + 9.5;
+x_box_width = (bushing_xy[0] <= 4) ? 19.5 : bushing_xy[0] * 2 + 9.5;
 bearing_height = max ((bushing_z[2] > 30 ? x_box_height : (2 * bushing_z[2] + bushing_spacing)), x_box_height);
 
 function sinr(x) = sin(180 * x / PI);
