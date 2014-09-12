@@ -85,10 +85,10 @@ module zrodholder(thickness=(i_am_box == 0 ? 19 : 15), bottom_thickness=7, ylen=
                     //piece along cut side of the board
                     if (i_am_box == 1) {
                         translate([-board_thickness/2, z_delta_y, 0])
-                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], z_delta_y+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
+                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], abs(z_delta_y)+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
                     } else {
                         translate([-board_thickness/2, z_delta_y, 0])
-                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], z_delta_y+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
+                            cube_fillet([board_thickness + board_to_xz_distance + bushing_z[0], abs(z_delta_y)+5, thickness], radius=2, top = [0, 0, 0, thickness], $fn=99);
                     }
                     //smooth rod insert
                     translate([board_to_xz_distance - z_delta_x, 9+z_delta_y, 0])
