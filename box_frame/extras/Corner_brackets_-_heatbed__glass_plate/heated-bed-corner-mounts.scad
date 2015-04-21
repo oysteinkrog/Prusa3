@@ -1,3 +1,10 @@
+glassX = 9;
+glassY = 9;
+glassZ = 3.0;
+sizeX = 20;
+sizeY = 20;
+sizeZ = 7.7;
+bedZ = 2;
 
 // 
 // TOP PART
@@ -7,31 +14,46 @@ module top_part(){
 
 		// Main object
 		difference() {
-			cube([20, 20, 7.7]); // Base
-			translate([-1, -1, 6]) cube([16, 16, 2]); // Bed cut
-			translate([-1, -1, 3.2]) cube([11, 11, 2.9]); // Glassplate cut
-			translate([12.3, 12.3, -1]) cylinder(h = 22, d=3.5, $fn=30); // Screw hole
-			translate([-25, 5, -1]) rotate(a=-45, v=[0, 0, 1]) cube([40, 20, 22]); // Mask cutoff front
-			translate([10, 25, -1]) rotate(a=-45, v=[0, 0, 1]) cube([40, 20, 22]); // Mask cutoff back
+			cube([sizeX, sizeY, sizeZ]); // Base
+
+			// Bed cut
+			translate([-1, -1, sizeZ-bedZ+0.3]) cube([16, 16, bedZ]); 
+
+			// Glassplate cut
+			translate([-1, -1, glassZ+0.2]) cube([abs(sizeX-glassX), sizeY-glassY, glassZ]); 
+
+			// Screw hole
+			translate([12.3, 12.3, -1]) cylinder(h = 22, d=3.5, $fn=30); 
+			
+			// Mask cutoff front
+			translate([-25, 5, -1]) rotate(a=-45, v=[0, 0, 1]) cube([40, 20, 22]); 
+
+			// Mask cutoff back
+			translate([10, 25, -1]) rotate(a=-45, v=[0, 0, 1]) cube([40, 20, 22]); 
 		}
 
 		// First arm
-		translate([10, -30, 0]) cube([3, 30, 3]);
-		difference(){
-			translate([9, -30, 0]) resize([0, 10, 0]) cylinder(h=6, d=8, $fn=50);
-			translate([1, -45, -1]) rotate(a=-40, v=z) cube([3, 30, 8]);
-		}
+		translate([10, -30, 0]) arm();
 
 		// Second arm
-		translate([-30, 10, 0]) cube([30, 3, 3]);
-		difference(){
-			translate([-30, 9, 0]) resize([10, 0, 0]) cylinder(h=6, d=8, $fn=50);
-			translate([-45, 5, -1]) rotate(a=-50, v=z) cube([3, 30, 8]);
-		}
+		translate([-30, 10, 0]) mirror([0,0,1]) rotate([0,180,-90]) arm();
 
 		//Hinges
-		translate([16.5, 3, 7.7]) cube([2, 3, 3]);
-		translate([3, 16.5, 7.7]) cube([3, 2, 3]);
+		//translate([16.5, 3, 7.7]) cube([2, 3, 3]);
+		//translate([3, 16.5, 7.7]) cube([3, 2, 3]);
+	}
+}
+
+module arm()
+{
+	// arm
+  cube([3, 30, 3]);
+
+	// knob
+	difference()
+	{
+		translate([-1,0,0]) resize([0, 10, 0]) cylinder(h=6, d=8, $fn=50);
+		translate([-1, -5, -1]) rotate(a=-40, v=z) cube([3, 30, 8]);
 	}
 }
 
@@ -70,6 +92,10 @@ module nut_part(){
 			translate([12.3, 12.3, -1]) cylinder(h = 3, d=7, $fn=6); // Nut hole
 			translate([-25, 5, -1]) rotate(a=-45, v=[0, 0, 1]) cube([40, 20, 22]);
 			translate([10, 25, -1]) rotate(a=-45, v=[0, 0, 1]) cube([40, 20, 22]);
+			//#translate([16, -1, -1]) rotate([0, 30, 0])  cube([40, 40, 40]);
+			//translate([18, 16, -1]) rotate([0, 30, 90])  cube([40, 40, 40]);
+			translate([31, -30.5, -21]) rotate([0, -30, 90])  cube([40, 40, 40]);
+			translate([-31, -10.5, -21]) rotate([0, -30, 00])  cube([40, 40, 40]);
 		}
 	}
 }
