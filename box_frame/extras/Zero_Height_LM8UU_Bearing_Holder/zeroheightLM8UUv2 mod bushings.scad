@@ -20,9 +20,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 // bearing's length
-b_length=24.2 ;		
+b_length=30.1;		
 // bearing's diameter
-b_dia= 15.1;		
+b_dia= 12.3;		
 
 // x distance of holes
 dx=28;			
@@ -44,8 +44,8 @@ module holder(){
 intersection(){
 	difference(){
 
-		translate([b_dia/2+2,0,1.0]) rotate([90,0,0])cube ([b_dia+5,b_dia+2,b_length+8-1],center=true);
-		#rotate([90,0,0]) cylinder(h=b_length,r=b_dia/2,center=true,$fn=46);								// cut bearing
+		translate([b_dia/2+2,0,1.0]) rotate([90,0,0])cube ([b_dia+10,b_dia+1,b_length+5-1],center=true);
+		rotate([90,0,0]) cylinder(h=b_length,r=b_dia/2,center=true,$fn=46);								// cut bearing
 		translate([0 ,0,-b_dia/2]) rotate([90,0,0])cube ([b_dia,b_dia,b_length],center=true);			// cut below bearing
 
 		#rotate([90,0,0]) cylinder(h=b_length+15,r=rod/2,center=true,$fn=24);								// cut center rod
@@ -66,9 +66,10 @@ intersection(){
 				translate([0,-nut/2,0])cube ([nut,nut,b_dia+1],center=true);
 			}
 
-		translate([b_dia+3,0,0]) cylinder(h=b_length+15,r=9.5/2,center=true,$fn=24);						// slim cut
 
-		translate([b_dia+5,0,0.4])rotate([0,-angle,0])translate([b_dia*1.5,0,b_dia*1.5])cube([b_dia*3,b_length+8+1,b_dia*3],center=true); // cut holder angle
+		translate([b_dia+7,0,0]) cylinder(h=b_length+15,r=9.5/2,center=true,$fn=24);						// slim cut
+
+		translate([b_dia+8,0,0.4])rotate([0,-angle,0])translate([b_dia*1.6,0,b_dia*1.5])cube([b_dia*3,b_length+8+1,b_dia*3],center=true); // cut holder angle
 		//rotate([0,b_angle,0])translate([-b_dia*1.5,0,b_dia*1.5])cube([b_dia*3,b_length+8+1,b_dia*3],center=true);		// cut bearing angle
 		//translate([0,0,b_dia*1.5-b_dia/2+b_dia+zcutoff])cube([b_dia*3,b_length+8+1,b_dia*3],center=true);		// cut top
 
