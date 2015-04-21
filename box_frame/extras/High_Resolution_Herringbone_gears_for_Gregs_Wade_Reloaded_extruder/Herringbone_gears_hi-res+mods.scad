@@ -6,7 +6,7 @@
 // It is licensed under the Creative Commons - GNU GPL license.
 // © 2010 by Nicholas C. Lewis
 // http://www.thingiverse.com/thing:4305
-	
+
 // For changing the resolution of the change involute_facets and circle_facets.
 //	invoulte_facets controls the number of faces on a gear tooth
 // circle_facets is a multiplier that increase the number of faces cylinder used to make the gears
@@ -19,12 +19,15 @@
 use <inc/mendel_misc.inc>
 use <inc/parametric_involute_gear_v5.1.scad>
 
+
+hobbedbolt_head_dia=12.9;//13.8;
 //WadesL();  //this module call will make the large gear
 //WadesS();  //this module call will make the small gear
-WadeL_double_helix(37);  //this module call will make the large double helix gear
-translate([50,0,0]) WadesS_double_helix(13); //this module call will make the small double helix gear
+//WadeL_double_helix(41,hobbedbolt_head_dia);  //this module call will make the large double helix gear
+//translate([41.5,0,0]) 
+WadesS_double_helix(15); //this module call will make the small double helix gear
 
-module WadeL_double_helix(teeth=47){
+module WadeL_double_helix(teeth=47, bolt_head_dia=12.9){
 	//Large WADE's Gear - Double Helix
 	//rotate([0,0,-2])translate([0,0,0])color([ 100/255, 255/255, 200/255])import_stl("39t17p.stl");
 
@@ -33,7 +36,7 @@ module WadeL_double_helix(teeth=47){
 	twist=200;
 	height=11;
 	pressure_angle=30;
-	involute_facets=12;	
+	involute_facets=40;	
 	circle_facets=7;
 
 	difference(){
@@ -73,64 +76,10 @@ module WadeL_double_helix(teeth=47){
 		//Instead of making changes to mendel_misc.inc with higher resoultion,
 		//the bolt hole is made the old fashion way with higher resoulution below
 		union () {
-			translate([0,0,10])rotate([180,0,0])cylinder(r=4.9,h=20,$fn=circle_facets*10);
-			translate ([0,0,8]) rotate ([0,0,30]) hexagon(height=14,depth=10);
+			translate([0,0,10])rotate([180,0,0])cylinder(r=4.2,h=20,$fn=circle_facets*10);
+			translate ([0,0,8]) rotate ([0,0,30]) hexagon(height=bolt_head_dia,depth=10);
 		}
 		
-	}
-}
-module WadesL(){
-	//Large WADE's Gear
-	//rotate([0,0,-2])translate([0,0,0])color([ 100/255, 255/255, 200/255])import_stl("39t17p.stl");
-
-	involute_facets=12;	
-	circle_facets=7;
-
-	difference(){
-		gear (number_of_teeth=39,
-			circular_pitch=268,
-			gear_thickness = 5,
-			rim_thickness = 7,
-			rim_width = 3,
-			hub_thickness = 13,
-			hub_diameter = 25,
-			bore_diameter = 8,
-			circles=0,
-			twist = 0,
-			involute_facets = involute_facets,
-			circle_facets = circle_facets);
-		//translate([0,0,6])rotate([180,0,0])m8_hole_vert_with_hex(100);
-
-		//Instead of making changes to mendel_misc.inc with higher resoultion,
-		//the bolt hole is made the old fashion way with higher resoulution below
-		union () {
-			translate([0,0,10])rotate([180,0,0])cylinder(r=4.9,h=20,$fn=circle_facets*10);
-			translate ([0,0,11]) rotate ([0,0,30]) hexagon(height=14,depth=10);
-		}
-	}
-}
-
-module WadesS(){
-	//small WADE's Gear
-	//rotate([180,0,-23.5])translate([-10,-10,-18])color([ 100/255, 255/255, 200/255])import_stl("wades_gear.stl");
-
-	involute_facets=12;	
-	circle_facets=7;
-
-	difference(){
-		gear (number_of_teeth=11,
-			circular_pitch=268,
-			gear_thickness = 9,
-			rim_thickness = 9,
-			hub_thickness = 18,
-			hub_diameter = 20,
-			bore_diameter = 5,
-			circles=0,
-			twist = 0,
-			involute_facets = involute_facets,
-			circle_facets = circle_facets);
-		translate([0,-5,16])cube([5.5,2.3,9],center = true);
-		translate([0,0,14])rotate([0,90,-90])cylinder(r=1.7,h=20,$fn=circle_facets*4);
 	}
 }
 module WadesS_double_helix(teeth=9){
@@ -142,9 +91,11 @@ module WadesS_double_helix(teeth=9){
 	twist=200;
 	height=25;
 	pressure_angle=30;
-	involute_facets=12;	
+	involute_facets=40;	
 	circle_facets=7;
 
+	nut_od = 10.1;
+	nut_h = 5;
 	difference(){
 		union(){
 		gear (number_of_teeth=teeth,
@@ -153,10 +104,10 @@ module WadesS_double_helix(teeth=9){
 			clearance = 0.2,
 			gear_thickness =  height/4,
 			rim_thickness = height/4,
-			rim_width = 5,
+			rim_width = 10,
 			hub_thickness = height/2*1.2,
-			hub_diameter = 20,
-			bore_diameter = 5,
+			hub_diameter = 21,
+			bore_diameter = 5.2,
 			circles=circles,
 			twist = twist/teeth,
 			involute_facets = involute_facets,
@@ -168,16 +119,18 @@ module WadesS_double_helix(teeth=9){
 			clearance = 0.2,
 			gear_thickness =  height/4*1.2,
 			rim_thickness =  height/4,
-			rim_width = 5,
+			rim_width = 10,
 			hub_thickness = height/4,
-			hub_diameter=20,
-			bore_diameter=5,
+			hub_diameter=21,
+			bore_diameter=5.2,
 			circles=circles,
 			twist=twist/teeth,
 			involute_facets = involute_facets,
 			circle_facets = circle_facets);
 		}
-		translate([0,-5,12])cube([5.5,2.3,9],center = true);
-		translate([0,0,11])rotate([0,90,-90])cylinder(r=1.7,h=20,$fn=circle_facets*4);
+
+		translate ([0,0,-3+15]) hexagon(height=nut_od,depth=nut_h+3);
+		translate([0,0,-4+15])rotate([0,90,-90])cylinder(r=1.7,h=20,$fn=circle_facets*4);
+		translate([0,-7,-4+15])rotate([0,90,-90])cylinder(r=2.6,h=10,$fn=circle_facets*4);
 	}
 }

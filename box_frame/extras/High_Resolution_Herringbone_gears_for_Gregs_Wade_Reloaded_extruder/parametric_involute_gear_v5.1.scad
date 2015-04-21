@@ -15,8 +15,12 @@
 //Complex Spur Gear Test:
 //test_gears ();
 
+
+
+	//test_double_helix_gear (13,0);
+
 // Meshing Double Helix:
-meshing_double_helix ();
+//meshing_double_helix ();
 
 // Demonstrate the backlash option for Spur gears.
 //test_backlash ();
