@@ -34,11 +34,11 @@ module servo(position, rotation, screws = 0, axle_lenght = 0)
 				{
 					translate([0,(-10.2 + 1.8),11])
 					{
-						# cylinder(r=1.2, h=9, $fn=10);
+						 cylinder(r=1.2, h=9, $fn=10);
 					}
 					translate([0,(22.5 - 1.8),11])
 					{
-						# cylinder(r=1.2, h=9, $fn=10);
+						 cylinder(r=1.2, h=9, $fn=10);
 					}
 
 				}
